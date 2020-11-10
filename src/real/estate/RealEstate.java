@@ -17,7 +17,7 @@ public class RealEstate {
     public static void main(String[] args) {
         // TODO code application logic here
         System.err.println("ok");
-         frmDueRents.main(null); 
+         frmDueRents.main(null);  
     }
     
 }
