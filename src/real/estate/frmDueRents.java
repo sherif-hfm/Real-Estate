@@ -16,6 +16,7 @@ public class frmDueRents extends javax.swing.JFrame {
      */
     public frmDueRents() {
         initComponents();
+        setLocationRelativeTo(null);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

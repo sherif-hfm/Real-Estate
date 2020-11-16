@@ -15,6 +15,7 @@ public class frmFreeUnits extends javax.swing.JFrame {
     /** Creates new form frmFreeUnits */
     public frmFreeUnits() {
         initComponents();
+        setLocationRelativeTo(null);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

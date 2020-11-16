@@ -16,6 +16,7 @@ public class frmUnits extends javax.swing.JFrame {
      */
     public frmUnits() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

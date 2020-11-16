@@ -16,6 +16,7 @@ public class frmContracts extends javax.swing.JFrame {
      */
     public frmContracts() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -16,6 +16,7 @@ public class frmTenants extends javax.swing.JFrame {
      */
     public frmTenants() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
