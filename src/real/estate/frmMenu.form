@@ -151,6 +151,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Units"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnUnitsMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRealEstate">
           <Properties>
@@ -170,6 +173,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Contracts"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnContractsMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnTenants">
           <Properties>
@@ -178,6 +184,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Tenants"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnTenantsMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnFreeUnits">
           <Properties>
@@ -186,6 +195,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Free Unites"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnFreeUnitsMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnPayments">
           <Properties>
@@ -194,6 +206,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Payments"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnPaymentsMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnDueRent">
           <Properties>
@@ -202,6 +217,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Due Rent"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnDueRentMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

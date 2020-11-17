@@ -55,6 +55,11 @@ public class frmMenu extends javax.swing.JFrame {
 
         btnUnits.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnUnits.setText("Units");
+        btnUnits.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUnitsMouseClicked(evt);
+            }
+        });
 
         btnRealEstate.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnRealEstate.setText("Real-Esate ");
@@ -66,18 +71,43 @@ public class frmMenu extends javax.swing.JFrame {
 
         btnContracts.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnContracts.setText("Contracts");
+        btnContracts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnContractsMouseClicked(evt);
+            }
+        });
 
         btnTenants.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnTenants.setText("Tenants");
+        btnTenants.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnTenantsMouseClicked(evt);
+            }
+        });
 
         btnFreeUnits.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnFreeUnits.setText("Free Unites");
+        btnFreeUnits.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFreeUnitsMouseClicked(evt);
+            }
+        });
 
         btnPayments.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnPayments.setText("Payments");
+        btnPayments.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPaymentsMouseClicked(evt);
+            }
+        });
 
         btnDueRent.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnDueRent.setText("Due Rent");
+        btnDueRent.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnDueRentMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -166,6 +196,36 @@ public class frmMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmRealEstate.main(null); 
     }//GEN-LAST:event_btnRealEstateMouseClicked
+
+    private void btnUnitsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUnitsMouseClicked
+        // TODO add your handling code here:
+        frmUnits.main(null);
+    }//GEN-LAST:event_btnUnitsMouseClicked
+
+    private void btnTenantsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnTenantsMouseClicked
+        // TODO add your handling code here:
+        frmTenants.main(null);
+    }//GEN-LAST:event_btnTenantsMouseClicked
+
+    private void btnContractsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnContractsMouseClicked
+        // TODO add your handling code here:
+        frmContracts.main(null);
+    }//GEN-LAST:event_btnContractsMouseClicked
+
+    private void btnPaymentsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPaymentsMouseClicked
+        // TODO add your handling code here:
+        frmPayments.main(null);
+    }//GEN-LAST:event_btnPaymentsMouseClicked
+
+    private void btnFreeUnitsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFreeUnitsMouseClicked
+        // TODO add your handling code here:
+        frmFreeUnits.main(null);
+    }//GEN-LAST:event_btnFreeUnitsMouseClicked
+
+    private void btnDueRentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDueRentMouseClicked
+        // TODO add your handling code here:
+        frmDueRents.main(null);
+    }//GEN-LAST:event_btnDueRentMouseClicked
 
     /**
      * @param args the command line arguments

@@ -163,6 +163,11 @@ public class frmRealEstate extends javax.swing.JFrame {
                 btnAddMouseClicked(evt);
             }
         });
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         txtAddress.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtAddress.setToolTipText("");
@@ -342,6 +347,10 @@ public class frmRealEstate extends javax.swing.JFrame {
         txtMobile.setText(data.RealEstateOwnerMobile);
         editMode=true;
     }//GEN-LAST:event_btnEditMouseClicked
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddActionPerformed
 
     /**
      * @param args the command line arguments
