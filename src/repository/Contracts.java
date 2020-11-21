@@ -6,31 +6,34 @@
 package repository;
 
 import java.sql.*;  
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-/**
- *
- * @author Sherif
- */
-public class RealEstate {
-    
-    public static List<Models.RealEstate> GetAllRealEstates(){
+public class Contracts {
+     public static List<Models.Contract> GetAllContracts(){
         try
         {         
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             Connection c=DriverManager.getConnection(Settings.url);  
             Statement st=c.createStatement();
-            String sql=String.format("select * from RealEstates");
+            String sql=String.format("select * from ContractsAllData order by ContractId");
             System.out.println(sql);
             ResultSet rs=st.executeQuery(sql); 
-            List<Models.RealEstate> result=new ArrayList<Models.RealEstate>();
+            List<Models.Contract> result=new ArrayList<Models.Contract>();
             while (rs.next()) {
-               Models.RealEstate row=new  Models.RealEstate();
+               Models.Contract row=new  Models.Contract();
+               row.ContractId=rs.getInt("ContractId");
+               row.TenantId=rs.getInt("TenantId");
+               row.UnitId=rs.getInt("UnitId");
                row.RealEstateId=rs.getInt("RealEstateId");
+               row.ContractTypeCode=rs.getInt("ContractTypeCode");
+               row.UnitDesc=rs.getString("UnitDesc");
                row.RealEstateDesc=rs.getString("RealEstateDesc");
-               row.RealEstateAddess=rs.getString("RealEstateAddess");
-               row.RealEstateOwnerName=rs.getString("RealEstateOwnerName");
-               row.RealEstateOwnerMobile=rs.getString("RealEstateOwnerMobile");
+               row.TenantName=rs.getString("TenantName");
+               row.ContractTypeDesc=rs.getString("ContractTypeDesc");
+               row.StartDate=rs.getString("StartDate");
+               row.EndDate=rs.getString("EndDate");
+               row.Amount=rs.getDouble("Amount");
                result.add(row);
             }
             return result;
@@ -42,13 +45,13 @@ public class RealEstate {
         }  
     }
     
-    public static boolean AddRealEstates(Models.RealEstate data){
+    public static boolean AddContract(Models.Contract data){
          try
         {         
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             Connection c=DriverManager.getConnection(Settings.url);  
             Statement st=c.createStatement();
-            String sql=String.format("insert into RealEstates (RealEstateDesc,RealEstateAddess,RealEstateOwnerName,RealEstateOwnerMobile) values(\"%s\",\"%s\",\"%s\",\"%s\")",data.RealEstateDesc,data.RealEstateAddess,data.RealEstateOwnerName,data.RealEstateOwnerMobile);
+            String sql=String.format("insert into Contracts (UnitId,TenantId,StartDate,EndDate,ContractTypeCode,Amount) values(%d,%d,\"%s\",\"%s\",%d,%f)",data.UnitId,data.TenantId,data.StartDate,data.EndDate,data.ContractTypeCode,data.Amount);
             System.out.println(sql);
             boolean rs=st.execute(sql); 
             return rs;
@@ -60,13 +63,13 @@ public class RealEstate {
         }  
      }
      
-    public static boolean DelRealEstate(String id){
+    public static boolean DelContract(String id){
          try
         {         
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             Connection c=DriverManager.getConnection(Settings.url);  
             Statement st=c.createStatement();
-            String sql=String.format("delete from  RealEstates where RealEstateId=%d",Integer.parseInt(id));
+            String sql=String.format("delete from  Contracts where ContractId=%d",Integer.parseInt(id));
             System.out.println(sql);
             boolean rs=st.execute(sql); 
             return rs;
@@ -78,22 +81,30 @@ public class RealEstate {
         }  
      }
      
-    public static Models.RealEstate GetRealEstate(String id){
+    public static Models.Contract GetContract(String id){
         try
-        {         
+        {   
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             Connection c=DriverManager.getConnection(Settings.url);  
             Statement st=c.createStatement();
-            String sql=String.format("select * from RealEstates where RealEstateId=%d",Integer.parseInt(id));
+            String sql=String.format("select * from ContractsAllData where ContractId=%d",Integer.parseInt(id));
             System.out.println(sql);
             ResultSet rs=st.executeQuery(sql); 
             if (rs.next()) {
-               Models.RealEstate row=new  Models.RealEstate();
+               Models.Contract row=new  Models.Contract();
+               row.ContractId=rs.getInt("ContractId");
+               row.TenantId=rs.getInt("TenantId");
+               row.UnitId=rs.getInt("UnitId");
                row.RealEstateId=rs.getInt("RealEstateId");
+               row.ContractTypeCode=rs.getInt("ContractTypeCode");
+               row.UnitDesc=rs.getString("UnitDesc");
                row.RealEstateDesc=rs.getString("RealEstateDesc");
-               row.RealEstateAddess=rs.getString("RealEstateAddess");
-               row.RealEstateOwnerName=rs.getString("RealEstateOwnerName");
-               row.RealEstateOwnerMobile=rs.getString("RealEstateOwnerMobile");
+               row.TenantName=rs.getString("TenantName");
+               row.ContractTypeDesc=rs.getString("ContractTypeDesc");
+               row.StartDate=rs.getDate("StartDate").toString();
+               row.EndDate=rs.getDate("EndDate").toString();
+               row.Amount=rs.getDouble("Amount");
                return row;
             }
             else
@@ -106,13 +117,13 @@ public class RealEstate {
         }  
     }
    
-    public static boolean UpdateRealEstates(Models.RealEstate data){
+    public static boolean UpdateContract(Models.Contract data){
          try
         {         
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             Connection c=DriverManager.getConnection(Settings.url);  
             Statement st=c.createStatement();
-            String sql=String.format("update RealEstates set RealEstateDesc=\"%s\",RealEstateAddess=\"%s\",RealEstateOwnerName=\"%s\",RealEstateOwnerMobile=\"%s\" where RealEstateId=%d",data.RealEstateDesc,data.RealEstateAddess,data.RealEstateOwnerName,data.RealEstateOwnerMobile,data.RealEstateId);
+            String sql=String.format("update Contracts set UnitId=%d,TenantId=%d,StartDate=\"%s\",EndDate=\"%s\",ContractTypeCode=%d,Amount=%f where ContractId=%d",data.UnitId,data.TenantId,data.StartDate,data.EndDate,data.ContractTypeCode,data.Amount,data.ContractId);
             System.out.println(sql);
             boolean rs=st.execute(sql); 
             return rs;
@@ -124,21 +135,20 @@ public class RealEstate {
         }  
      }
     
-    
-    public static List<Models.RealEstate> GetAllFreeRealEstates(){
+    public static List<Models.ContractType> GetContractType(){
         try
         {         
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             Connection c=DriverManager.getConnection(Settings.url);  
             Statement st=c.createStatement();
-            String sql=String.format("select * from FreeRealEstate");
+            String sql=String.format("select * from ContractTypes");
             System.out.println(sql);
             ResultSet rs=st.executeQuery(sql); 
-            List<Models.RealEstate> result=new ArrayList<Models.RealEstate>();
+            List<Models.ContractType> result=new ArrayList<Models.ContractType>();
             while (rs.next()) {
-               Models.RealEstate row=new  Models.RealEstate();
-               row.RealEstateId=rs.getInt("RealEstateId");
-               row.RealEstateDesc=rs.getString("RealEstateDesc");
+               Models.ContractType row=new  Models.ContractType();
+               row.ContractTypeCode=rs.getInt("ContractTypeCode");
+               row.ContractTypeDesc=rs.getString("ContractTypeDesc");
                result.add(row);
             }
             return result;
@@ -149,4 +159,5 @@ public class RealEstate {
             return null;
         }  
     }
+    
 }

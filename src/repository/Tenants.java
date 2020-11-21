@@ -8,27 +8,24 @@ package repository;
 import java.sql.*;  
 import java.util.*;
 
-/**
- *
- * @author Sherif
- */
-public class Units {
-    
-    public static List<Models.Unit> GetAllUnits(int realEstateId){
+
+public class Tenants {
+      public static List<Models.Tenant> GetAllTenants(){
         try
         {         
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             Connection c=DriverManager.getConnection(Settings.url);  
             Statement st=c.createStatement();
-            String sql=String.format("select * from Units where RealEstateId=%d",realEstateId);
+            String sql=String.format("select * from Tenants");
             System.out.println(sql);
             ResultSet rs=st.executeQuery(sql); 
-            List<Models.Unit> result=new ArrayList<Models.Unit>();
+            List<Models.Tenant> result=new ArrayList<Models.Tenant>();
             while (rs.next()) {
-               Models.Unit row=new  Models.Unit();
-               row.UnitId=rs.getInt("UnitId");
-               row.RealEstateId=rs.getInt("RealEstateId");
-               row.UnitDesc=rs.getString("UnitDesc");
+               Models.Tenant row=new  Models.Tenant();
+               row.TenantId=rs.getInt("TenantId");
+               row.TenantName=rs.getString("TenantName");
+               row.TenantIdNo=rs.getString("TenantIdNo");
+               row.TenantMobile=rs.getString("TenantMobile");
                result.add(row);
             }
             return result;
@@ -39,14 +36,14 @@ public class Units {
             return null;
         }  
     }
-        
-    public static boolean AddUnit(Models.Unit data){
+    
+     public static boolean AddTenant(Models.Tenant data){
          try
         {         
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             Connection c=DriverManager.getConnection(Settings.url);  
             Statement st=c.createStatement();
-            String sql=String.format("insert into Units (RealEstateId,UnitDesc) values(%d,\"%s\")",data.RealEstateId,data.UnitDesc);
+            String sql=String.format("insert into Tenants (TenantName,TenantIdNo,TenantMobile) values(\"%s\",\"%s\",\"%s\")",data.TenantName,data.TenantIdNo,data.TenantMobile);
             System.out.println(sql);
             boolean rs=st.execute(sql); 
             return rs;
@@ -57,14 +54,14 @@ public class Units {
             return false;
         }  
      }
-        
-    public static boolean DelUnit(String id){
+     
+     public static boolean DelTenant(String id){
          try
         {         
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             Connection c=DriverManager.getConnection(Settings.url);  
             Statement st=c.createStatement();
-            String sql=String.format("delete from  Units where UnitId=%d",Integer.parseInt(id));
+            String sql=String.format("delete from  Tenants where TenantId=%d",Integer.parseInt(id));
             System.out.println(sql);
             boolean rs=st.execute(sql); 
             return rs;
@@ -75,21 +72,22 @@ public class Units {
             return false;
         }  
      }
-         
-    public static Models.Unit GetUnit(String id){
+     
+   public static Models.Tenant GetTenant(String id){
         try
         {         
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             Connection c=DriverManager.getConnection(Settings.url);  
             Statement st=c.createStatement();
-            String sql=String.format("select * from Units where UnitId=%d",Integer.parseInt(id));
+            String sql=String.format("select * from Tenants where TenantId=%d",Integer.parseInt(id));
             System.out.println(sql);
             ResultSet rs=st.executeQuery(sql); 
             if (rs.next()) {
-               Models.Unit row=new  Models.Unit();
-               row.UnitId=rs.getInt("UnitId");
-               row.RealEstateId=rs.getInt("RealEstateId");               
-               row.UnitDesc=rs.getString("UnitDesc");
+               Models.Tenant row=new  Models.Tenant();
+               row.TenantId=rs.getInt("TenantId");
+               row.TenantName=rs.getString("TenantName");
+               row.TenantIdNo=rs.getString("TenantIdNo");
+               row.TenantMobile=rs.getString("TenantMobile");
                return row;
             }
             else
@@ -102,13 +100,13 @@ public class Units {
         }  
     }
    
-    public static boolean UpdateUnit(Models.Unit data){
+   public static boolean UpdateRealEstates(Models.Tenant data){
          try
         {         
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
             Connection c=DriverManager.getConnection(Settings.url);  
             Statement st=c.createStatement();
-            String sql=String.format("update Units set RealEstateId=%d,UnitDesc=\"%s\" where UnitId=%d",data.RealEstateId,data.UnitDesc,data.UnitId);
+            String sql=String.format("update Tenants set TenantName=\"%s\",TenantIdNo=\"%s\",TenantMobile=\"%s\" where TenantId=%d",data.TenantName,data.TenantIdNo,data.TenantMobile,data.TenantId);
             System.out.println(sql);
             boolean rs=st.execute(sql); 
             return rs;
@@ -119,31 +117,4 @@ public class Units {
             return false;
         }  
      }
-    
-    public static List<Models.Unit> GetAllFreeUnits(int realEstateId){
-        try
-        {         
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
-            Connection c=DriverManager.getConnection(Settings.url);  
-            Statement st=c.createStatement();
-            String sql=String.format("select * from FreeUnits where RealEstateId=%d",realEstateId);
-            System.out.println(sql);
-            ResultSet rs=st.executeQuery(sql); 
-            List<Models.Unit> result=new ArrayList<Models.Unit>();
-            while (rs.next()) {
-               Models.Unit row=new  Models.Unit();
-               row.UnitId=rs.getInt("UnitId");
-               row.RealEstateId=rs.getInt("RealEstateId");
-               row.UnitDesc=rs.getString("UnitDesc");
-               result.add(row);
-            }
-            return result;
-        }
-        catch(Exception ex)
-        {
-            System.err.println(ex);
-            return null;
-        }  
-    }
-    
 }

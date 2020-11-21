@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class frmUnits extends javax.swing.JFrame {
 
-     private boolean editMode=false;
+    private boolean editMode=false;
     
     private int rowId;
     /**

@@ -48,7 +48,6 @@ public class frmLogin extends javax.swing.JFrame {
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         txtUser.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtUser.setText("admin");
         txtUser.setToolTipText("");
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,7 +56,6 @@ public class frmLogin extends javax.swing.JFrame {
         });
 
         txtPass.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtPass.setText("admin");
         txtPass.setToolTipText("");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
