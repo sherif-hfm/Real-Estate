@@ -120,7 +120,7 @@ public class Units {
         }  
      }
     
-    public static List<Models.Unit> GetAllFreeUnits(int realEstateId){
+    public static List<Models.Unit> GetFreeUnitsByRealId(int realEstateId){
         try
         {         
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
@@ -135,6 +135,34 @@ public class Units {
                row.UnitId=rs.getInt("UnitId");
                row.RealEstateId=rs.getInt("RealEstateId");
                row.UnitDesc=rs.getString("UnitDesc");
+               result.add(row);
+            }
+            return result;
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex);
+            return null;
+        }  
+    }
+    
+    public static List<Models.FreeUnit> GetAllFreeUnits(){
+        try
+        {         
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
+            Connection c=DriverManager.getConnection(Settings.url);  
+            Statement st=c.createStatement();
+            String sql=String.format("select * from FreeUnits order by RealEstateId");
+            System.out.println(sql);
+            ResultSet rs=st.executeQuery(sql); 
+            List<Models.FreeUnit> result=new ArrayList<Models.FreeUnit>();
+            while (rs.next()) {
+               Models.FreeUnit row=new  Models.FreeUnit();
+               row.UnitId=rs.getInt("UnitId");
+               row.RealEstateId=rs.getInt("RealEstateId");
+               row.UnitDesc=rs.getString("UnitDesc");
+               row.RealEstateDesc=rs.getString("RealEstateDesc");
+               row.RealEstateAddess=rs.getString("RealEstateAddess");
                result.add(row);
             }
             return result;

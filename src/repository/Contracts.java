@@ -160,4 +160,39 @@ public class Contracts {
         }  
     }
     
+    public static List<Models.Contract> GetContractByTenant(int id){
+       try
+        {         
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver"); 
+            Connection c=DriverManager.getConnection(Settings.url);  
+            Statement st=c.createStatement();
+            String sql=String.format("select * from ContractsAllData where TenantId=%d order by ContractId",id);
+            System.out.println(sql);
+            ResultSet rs=st.executeQuery(sql); 
+            List<Models.Contract> result=new ArrayList<Models.Contract>();
+            while (rs.next()) {
+               Models.Contract row=new  Models.Contract();
+               row.ContractId=rs.getInt("ContractId");
+               row.TenantId=rs.getInt("TenantId");
+               row.UnitId=rs.getInt("UnitId");
+               row.RealEstateId=rs.getInt("RealEstateId");
+               row.ContractTypeCode=rs.getInt("ContractTypeCode");
+               row.UnitDesc=rs.getString("UnitDesc");
+               row.RealEstateDesc=rs.getString("RealEstateDesc");
+               row.TenantName=rs.getString("TenantName");
+               row.ContractTypeDesc=rs.getString("ContractTypeDesc");
+               row.StartDate=rs.getString("StartDate");
+               row.EndDate=rs.getString("EndDate");
+               row.Amount=rs.getDouble("Amount");
+               result.add(row);
+            }
+            return result;
+        }
+        catch(Exception ex)
+        {
+            System.err.println(ex);
+            return null;
+        }  
+    }
+    
 }

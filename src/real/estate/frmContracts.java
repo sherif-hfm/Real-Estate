@@ -110,7 +110,7 @@ public class frmContracts extends javax.swing.JFrame {
         Models.ComboBoxItem realItem=(Models.ComboBoxItem)drpRealStates.getSelectedItem();
         if(realItem == null)
             return;
-        List<Models.Unit> data=repository.Units.GetAllFreeUnits(realItem.getId());
+        List<Models.Unit> data=repository.Units.GetFreeUnitsByRealId(realItem.getId());
          DefaultComboBoxModel model=new javax.swing.DefaultComboBoxModel<Models.ComboBoxItem>();
          Models.ComboBoxItem r1=new Models.ComboBoxItem(0,"");
          model.addElement(r1);
