@@ -257,6 +257,9 @@ public class frmUnits extends javax.swing.JFrame {
 
     private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
         // TODO add your handling code here:
+        int result = JOptionPane.showConfirmDialog(null,"Do you want to delete?", "Real-Estate System",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        if(result == JOptionPane.NO_OPTION)
+            return;
         int row = tblData.getSelectedRow();
         String id = tblData.getModel().getValueAt(row, 0).toString();
         repository.Units.DelUnit(id);

@@ -7,6 +7,7 @@ package real.estate;
 
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -158,11 +159,6 @@ public class frmRealEstate extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnAdd.setText("Save");
-        btnAdd.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnAddMouseClicked(evt);
-            }
-        });
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -195,17 +191,17 @@ public class frmRealEstate extends javax.swing.JFrame {
 
         btnDel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnDel.setText("Delete Row");
-        btnDel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnDelMouseClicked(evt);
+        btnDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDelActionPerformed(evt);
             }
         });
 
         btnEdit.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         btnEdit.setText("Edit Row");
-        btnEdit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEditMouseClicked(evt);
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
             }
         });
 
@@ -301,18 +297,6 @@ public class frmRealEstate extends javax.swing.JFrame {
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnCancelMouseClicked
 
-    private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
-        // TODO add your handling code here:
-       if(editMode)
-            UpdateData();
-       else
-           AddData();
-       
-       BindRealEstate();
-        ClearForm();
-        editMode=false;
-    }//GEN-LAST:event_btnAddMouseClicked
-
     private void txtAddressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAddressActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAddressActionPerformed
@@ -325,16 +309,31 @@ public class frmRealEstate extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMobileActionPerformed
 
-    private void btnDelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDelMouseClicked
-        
-        int row = tblData.getSelectedRow();
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+         if(editMode)
+            UpdateData();
+       else
+           AddData();
+       
+       BindRealEstate();
+        ClearForm();
+        editMode=false;
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelActionPerformed
+        // TODO add your handling code here:
+        int result = JOptionPane.showConfirmDialog(null,"Do you want to delete?", "Real-Estate System",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+        if(result == JOptionPane.NO_OPTION)
+            return;
+         int row = tblData.getSelectedRow();
         String id = tblData.getModel().getValueAt(row, 0).toString();
         repository.RealEstate.DelRealEstate(id);
         System.err.println(id);
          BindRealEstate();
-    }//GEN-LAST:event_btnDelMouseClicked
+    }//GEN-LAST:event_btnDelActionPerformed
 
-    private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
         ClearForm();
         int row = tblData.getSelectedRow();
@@ -346,11 +345,7 @@ public class frmRealEstate extends javax.swing.JFrame {
         txtOwner.setText(data.RealEstateOwnerName);
         txtMobile.setText(data.RealEstateOwnerMobile);
         editMode=true;
-    }//GEN-LAST:event_btnEditMouseClicked
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddActionPerformed
+    }//GEN-LAST:event_btnEditActionPerformed
 
     /**
      * @param args the command line arguments
