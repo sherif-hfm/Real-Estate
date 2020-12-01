@@ -95,7 +95,7 @@ public class frmMenu extends javax.swing.JFrame {
         });
 
         btnFreeUnits.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        btnFreeUnits.setText("Free Unites");
+        btnFreeUnits.setText("Free Units");
         btnFreeUnits.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnFreeUnitsMouseClicked(evt);
